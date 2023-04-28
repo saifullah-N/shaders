@@ -1,29 +1,20 @@
-import { HexColorPicker } from "react-colorful";
-import {React, useContext, useState ,useEffect} from 'react'
-import { ContextAction, ContextValue } from "./Context";
+import { HexColorPicker } from 'react-colorful';
+import { React, useState, useEffect } from 'react';
+import { useMaterial } from './ContextProvider';
 function ColorPicker() {
-
-
-const materialBG = useContext(ContextValue);
-const setMaterialBG = useContext(ContextAction);
-let [display,setDisplay] = useState(false)
-useEffect(() => {
-  materialBG.current!="none"?setDisplay(true):setDisplay(false)
-  console.log(materialBG ,"useeff ");
-})
- if(display)
-    return(
-          
-          <div style={{ display: "block", marginTop: "-20%" }}>
-            <HexColorPicker
-              color={materialBG.items[materialBG.current]}
-              onChange={(color) => {
-                materialBG.items[materialBG.current] = color;
-                setMaterialBG(materialBG);
-              }}
-            />
-          </div>
-        )
-
+  const { materialBG, handleMaterial, displayColorPicker } = useMaterial();
+  return displayColorPicker ? (
+    <div style={{ display: 'block', marginTop: '-20%' }}>
+      <HexColorPicker
+        color={materialBG.items[materialBG.current]}
+        onChange={(color) => {
+          materialBG.items[materialBG.current] = color;
+          handleMaterial(materialBG);
+        }}
+      />
+    </div>
+  ) : (
+    <div></div>
+  );
 }
- export default ColorPicker;
+export default ColorPicker;
