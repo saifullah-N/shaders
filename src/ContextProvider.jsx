@@ -23,7 +23,7 @@ const MaterialProvider = ({ children }) => {
   });
   const handleMaterial = (value) => {
     setMaterial(value);
-    materialBG.current != 'none'
+    materialBG.current != null
       ? setDisplayColorPicker(true)
       : setDisplayColorPicker(false);
   };

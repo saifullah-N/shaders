@@ -16,14 +16,16 @@ export default function Shoe({ ...props }) {
         ref={group}
         {...props}
         dispose={null}
-        onPointerDown={(e) => {
+        onClick={(e) => {
           e.stopPropagation();
           materialBG.current = e.object.material.name;
-          handleMaterial(materialBG);
+          handleMaterial(JSON.parse(JSON.stringify(materialBG)));
           console.log(materialBG);
         }}
-        onPointerMissed={(e) => {
+        onDoubleClick={(e) => {
           materialBG.current = null;
+          handleMaterial(JSON.parse(JSON.stringify(materialBG)));
+          console.log(materialBG);
         }}>
         <mesh
           geometry={nodes.shoe.geometry}
