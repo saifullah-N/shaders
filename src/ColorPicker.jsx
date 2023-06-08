@@ -9,7 +9,7 @@ function ColorPicker() {
         color={materialBG.items[materialBG.current]}
         onChange={(color) => {
           materialBG.items[materialBG.current] = color;
-          handleMaterial(JSON.parse(JSON.stringify(materialBG)));
+          handleMaterial(structuredClone(materialBG));
         }}
       />
     </div>

@@ -19,12 +19,12 @@ export default function Shoe({ ...props }) {
         onClick={(e) => {
           e.stopPropagation();
           materialBG.current = e.object.material.name;
-          handleMaterial(JSON.parse(JSON.stringify(materialBG)));
+          handleMaterial(structuredClone(materialBG));
           console.log(materialBG);
         }}
         onDoubleClick={(e) => {
           materialBG.current = null;
-          handleMaterial(JSON.parse(JSON.stringify(materialBG)));
+          handleMaterial(structuredClone(materialBG));
           console.log(materialBG);
         }}>
         <mesh
